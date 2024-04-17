@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>257</width>
+    <width>247</width>
     <height>320</height>
    </rect>
   </property>
@@ -66,6 +66,30 @@
      </item>
      <item>
       <widget class="QSlider" name="ledEffectSlider">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>70</height>
+        </size>
+       </property>
+       <property name="sizeIncrement">
+        <size>
+         <width>0</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="baseSize">
+        <size>
+         <width>0</width>
+         <height>2</height>
+        </size>
+       </property>
        <property name="autoFillBackground">
         <bool>false</bool>
        </property>
@@ -74,6 +98,9 @@
        </property>
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="tickPosition">
+        <enum>QSlider::TicksBothSides</enum>
        </property>
       </widget>
      </item>
@@ -107,6 +134,12 @@
      </item>
      <item>
       <widget class="QSlider" name="brightnessSlider">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>50</height>
+        </size>
+       </property>
        <property name="maximum">
         <number>100</number>
        </property>
@@ -114,7 +147,7 @@
         <number>10</number>
        </property>
        <property name="pageStep">
-        <number>20</number>
+        <number>30</number>
        </property>
        <property name="sliderPosition">
         <number>1</number>
@@ -135,7 +168,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>257</width>
+     <width>247</width>
      <height>21</height>
     </rect>
    </property>
