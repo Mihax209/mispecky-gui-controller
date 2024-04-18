@@ -78,7 +78,7 @@ class Ui_MainWindow(object):
         self.ledEffectSlider.setSizeIncrement(QtCore.QSize(0, 0))
         self.ledEffectSlider.setBaseSize(QtCore.QSize(0, 2))
         self.ledEffectSlider.setAutoFillBackground(False)
-        self.ledEffectSlider.setMaximum(3)
+        self.ledEffectSlider.setMaximum(4)
         self.ledEffectSlider.setPageStep(1)
         self.ledEffectSlider.setOrientation(QtCore.Qt.Orientation.Horizontal)
         self.ledEffectSlider.setTickPosition(QtWidgets.QSlider.TickPosition.TicksBothSides)
