@@ -12,7 +12,7 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(247, 320)
+        MainWindow.resize(247, 321)
         MainWindow.setIconSize(QtCore.QSize(24, 24))
         MainWindow.setTabShape(QtWidgets.QTabWidget.TabShape.Rounded)
         self.centralwidget = QtWidgets.QWidget(parent=MainWindow)
@@ -52,6 +52,7 @@ class Ui_MainWindow(object):
         self.ledEffectSlider.setBaseSize(QtCore.QSize(0, 2))
         self.ledEffectSlider.setAutoFillBackground(False)
         self.ledEffectSlider.setMaximum(3)
+        self.ledEffectSlider.setPageStep(1)
         self.ledEffectSlider.setOrientation(QtCore.Qt.Orientation.Horizontal)
         self.ledEffectSlider.setTickPosition(QtWidgets.QSlider.TickPosition.TicksBothSides)
         self.ledEffectSlider.setObjectName("ledEffectSlider")

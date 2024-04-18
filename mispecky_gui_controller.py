@@ -1,15 +1,15 @@
 import sys
-from PyQt6 import QtWidgets, uic
-from PyQt6.QtCore import Qt
-
+from PyQt6 import QtWidgets, QtGui, uic
 from serial_controller import MispeckySerialController
 
-class UI(QtWidgets.QMainWindow):
+class MainUI(QtWidgets.QMainWindow):
     def __init__(self):
-        super(UI, self).__init__()
+        super(MainUI, self).__init__()
         uic.loadUi('ui/mispecky_controller.ui', self)
 
         self.serial_controller = MispeckySerialController()
+
+        self.createSystemTray()
 
         self.ledEffectSlider = self.findChild(QtWidgets.QSlider, 'ledEffectSlider')
         self.brightnessSlider = self.findChild(QtWidgets.QSlider, 'brightnessSlider')
@@ -35,7 +35,32 @@ class UI(QtWidgets.QMainWindow):
         except TimeoutError:
             print("Timeout error when sending brightness command")
 
+    def createSystemTray(self):
+        self.tray_icon = QtWidgets.QSystemTrayIcon(self)
+        self.tray_icon.setIcon(QtGui.QIcon('icons/system_tray.png'))
+        self.tray_icon.activated.connect(self.icon_activated)
+
+        menu = QtWidgets.QMenu(self)
+        open_action = QtGui.QAction("Open", self)
+        exit_action = QtGui.QAction("Exit", self)
+        open_action.triggered.connect(self.show)
+        exit_action.triggered.connect(app.exit)
+        menu.addAction(open_action)
+        menu.addAction(exit_action)
+        self.tray_icon.setContextMenu(menu)
+        
+        self.tray_icon.show()
+
+    def closeEvent(self, event):
+        event.ignore()
+        self.hide()
+        self.tray_icon.show()
+
+    def icon_activated(self, reason):
+        if reason == QtWidgets.QSystemTrayIcon.ActivationReason.DoubleClick:
+            self.showNormal()
+
 
 app = QtWidgets.QApplication(sys.argv)
-window = UI()
+window = MainUI()
 app.exec()
