@@ -7,7 +7,7 @@ class MispeckySerialController():
     def __init__(self):
         self.serial = serial.Serial(
             port='COM7',
-            baudrate=57600,
+            baudrate=115200,
             timeout=0.2
         )
     
@@ -17,9 +17,13 @@ class MispeckySerialController():
     def send_effect_command(self, value: int) -> bool:
         return self.__send_command('E', value)
 
-    @retry(max_retries=10, wait_time=0)
-    def __send_command(self, command_char: chr, command_value: int) -> bool:
+    def send_custom_color_command(self, value: str) -> bool:
+        return self.__send_command('C', value)
+
+    @retry(max_retries=20, wait_time=0.05)
+    def __send_command(self, command_char: chr, command_value) -> bool:
         command_str = f'{command_char} {command_value}\n'
+        print(f"Sending: {command_str}")
 
         self.serial.write(command_str.encode())
         
