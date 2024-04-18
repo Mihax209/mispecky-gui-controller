@@ -1,11 +1,12 @@
-import sys
+import sys, os
 from PyQt6 import QtWidgets, QtGui, uic
 from serial_controller import MispeckySerialController
+from common import dynamic_file_path
 
 class MainUI(QtWidgets.QMainWindow):
     def __init__(self):
         super(MainUI, self).__init__()
-        uic.loadUi('ui/mispecky_controller.ui', self)
+        uic.loadUi(dynamic_file_path('ui/mispecky_controller.ui'), self)
 
         self.serial_controller = MispeckySerialController()
 
@@ -37,14 +38,14 @@ class MainUI(QtWidgets.QMainWindow):
 
     def createSystemTray(self):
         self.tray_icon = QtWidgets.QSystemTrayIcon(self)
-        self.tray_icon.setIcon(QtGui.QIcon('icons/system_tray.png'))
         self.tray_icon.activated.connect(self.icon_activated)
+        self.tray_icon.setIcon(QtGui.QIcon(dynamic_file_path('icons/system_tray.png')))
 
         menu = QtWidgets.QMenu(self)
         open_action = QtGui.QAction("Open", self)
         exit_action = QtGui.QAction("Exit", self)
         open_action.triggered.connect(self.show)
-        exit_action.triggered.connect(app.exit)
+        exit_action.triggered.connect(app.exit)  # TODO this feels hacky
         menu.addAction(open_action)
         menu.addAction(exit_action)
         self.tray_icon.setContextMenu(menu)

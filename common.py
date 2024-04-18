@@ -1,4 +1,4 @@
-import time
+import time, os, sys
 
 def retry(max_retries=3, wait_time=None):
     def decorator(func):
@@ -16,3 +16,10 @@ def retry(max_retries=3, wait_time=None):
                 raise TimeoutError(f"Max retries of function {func.__name__} exceeded")
         return wrapper
     return decorator
+
+
+def dynamic_file_path(path) -> str:
+    if getattr(sys, 'frozen', False):
+        return os.path.join(sys._MEIPASS, path)
+    else:
+        return path
