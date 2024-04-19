@@ -5,7 +5,7 @@ class ColorSelectButton(QtWidgets.QPushButton):
         super(ColorSelectButton, self).__init__(*args, **kwargs)
         self.color = QtGui.QColor(0x4400ff)
 
-        self.color_dialog = QtWidgets.QColorDialog(self)
+        self.color_dialog = QtWidgets.QColorDialog()
         self.color_dialog.currentColorChanged.connect(self.setColor)
         self.color_dialog.setCurrentColor = self.color
         self.color_dialog.hide()
@@ -16,7 +16,6 @@ class ColorSelectButton(QtWidgets.QPushButton):
     def getColor(self):
         return self.color.name().lstrip('#')
 
-        
     def setColor(self, color: QtGui.QColor):
         self.color = color
         print(f"New color is {color.name()}")
