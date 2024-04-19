@@ -30,7 +30,7 @@ class MainUI(QtWidgets.QMainWindow):
         self.brightnessSlider.valueChanged.connect(self.brightnessChanged)
         self.customColorButton.clicked.connect(self.sendCustomColor)
 
-        self.show()
+        self.close()
 
     def effectChanged(self):
         value = self.ledEffectSlider.value()
